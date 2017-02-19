@@ -10,6 +10,14 @@ open_project_button.onclick = openProject;
 var new_project_button = document.getElementById('new-project-button');
 new_project_button.onclick = newProject;
 
+var exit_button = document.getElementById('exit-button');
+exit_button.onclick = exitApp;
+
+function exitApp() {
+    var window = app.getCurrentWindow();
+    window.close();
+}
+
 function selectDirectory() {
     project_home = dialog.showOpenDialog({properties: ['openDirectory']})[0]
 }

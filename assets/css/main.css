@@ -8,6 +8,7 @@ body {
 
 .container {
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .tab-pane.active {
