@@ -5,3 +5,19 @@ body * {
 body {
     background-color: #d1d1d1;
 }
+
+.container {
+    margin-top: 15px;
+}
+
+.tab-pane.active {
+    background-color: #ffffff;
+}
+
+.active {
+    color: #464a4c !important;
+}
+
+.nav-item {
+    cursor: default;
+}

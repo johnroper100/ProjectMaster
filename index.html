@@ -24,18 +24,42 @@
                             File
                         </span>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil" aria-hidden="true"></i> New Project</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-folder-open" aria-hidden="true"></i> Open Project</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-times-circle" aria-hidden="true"></i> Exit</a>
+                            <span class="dropdown-item" id="new-project-button"><i class="fa fa-pencil" aria-hidden="true"></i> New Project</span>
+                            <span class="dropdown-item"><i class="fa fa-folder-open" aria-hidden="true"></i> Open Project</span>
+                            <span class="dropdown-item"><i class="fa fa-times-circle" aria-hidden="true"></i> Exit</span>
                         </div>
                     </li>
                 </ul>
             </div>
         </nav>
+        
+        <div class="container">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item bg-danger active tab " style="margin-right: 3px;">
+                    <span class="nav-link" data-toggle="tab" href="#assets" role="tab" style="color: #ffffff;"><i class="fa fa-file" aria-hidden="true"></i> Assets</span>
+                  </li>
+                  <li class="nav-item bg-primary" style="margin-right: 3px;">
+                    <span class="nav-link" data-toggle="tab" href="#shots" role="tab" style="color: #ffffff;"><i class="fa fa-video-camera" aria-hidden="true"></i> Shots</span>
+                  </li>
+                  <li class="nav-item bg-success">
+                    <span class="nav-link" data-toggle="tab" href="#tools" role="tab" style="color: #ffffff;"><i class="fa fa-wrench" aria-hidden="true"></i> Tools</span>
+                  </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane active" id="assets" role="tabpanel">Assets</div>
+                  <div class="tab-pane" id="shots" role="tabpanel">Shots</div>
+                  <div class="tab-pane" id="tools" role="tabpanel">Tools</div>
+                </div>
+            </div>
+        </div>
 
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
         <script>window.$ = window.jQuery = require('./assets/js/jquery-3.1.1.min.js');</script>
         <script src="./assets/js/tether.min.js"></script>
         <script src="./assets/js/bootstrap.min.js"></script>
+        <script src="./assets/js/app.js"></script>
   </body>
 </html>
