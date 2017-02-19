@@ -1,0 +1,23 @@
+{
+  "name": "projectmaster",
+  "version": "1.0.0",
+  "description": "A desktop application to help you manage your production files",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnroper100/ProjectMaster.git"
+  },
+  "author": "John Roper",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/johnroper100/ProjectMaster/issues"
+  },
+  "homepage": "https://github.com/johnroper100/ProjectMaster#readme",
+  "devDependencies": {
+    "electron": "^1.4.15"
+  }
+}
