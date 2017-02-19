@@ -5,7 +5,9 @@ const url = require('url')
 let win
 
 function createWindow () {
-  win = new BrowserWindow({width: 1050, height: 600, title: "ProjectMaster"})
+  win = new BrowserWindow({width: 1050, height: 600, title: "ProjectMaster", resizable: false})
+    
+  win.setMenu(null);
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
