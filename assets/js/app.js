@@ -18,6 +18,13 @@ function getDirectories(srcpath) {
   return fs.readdirSync(srcpath).filter(file => fs.statSync(path.join(srcpath, file)).isDirectory())
 }
 
+function setScene() {
+    var start = document.getElementById('start-view');
+    var project = document.getElementById('project-view');
+    start.classList.add("display-none-elem");
+    project.classList.remove("display-none-elem");
+}
+
 function setDirListings() {
     assetsChars = [];
     assetsChars = getDirectories(path.join(project_home, "assets", "chars"));
@@ -26,6 +33,33 @@ function setDirListings() {
     $.each(assetsChars, function(i)
     {
         var li = $('<li/>').addClass('list-group-item').text(assetsChars[i]).appendTo(assetsCharsList);
+    });
+    
+    assetsEnvs = [];
+    assetsEnvs = getDirectories(path.join(project_home, "assets", "envs"));
+    var assetsEnvsList = $('#assets-envs-list')
+    assetsEnvsList.empty();
+    $.each(assetsEnvs, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(assetsEnvs[i]).appendTo(assetsEnvsList);
+    });
+    
+    assetsMaps = [];
+    assetsMaps = getDirectories(path.join(project_home, "assets", "maps"));
+    var assetsMapsList = $('#assets-maps-list')
+    assetsMapsList.empty();
+    $.each(assetsMaps, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(assetsMaps[i]).appendTo(assetsMapsList);
+    });
+    
+    assetsProps = [];
+    assetsProps = getDirectories(path.join(project_home, "assets", "props"));
+    var assetsPropsList = $('#assets-props-list')
+    assetsPropsList.empty();
+    $.each(assetsProps, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(assetsProps[i]).appendTo(assetsPropsList);
     });
 }
 
@@ -83,11 +117,13 @@ function newProject() {
     }
     
     setDirListings();
+    setScene();
 }
 
 function openProject() {
     selectDirectory();
     setDirListings();
+    setScene();
 }
 
 function newAsset() {

@@ -33,7 +33,18 @@
             </div>
         </nav>
         
-        <div class="container">
+        <div class="container" id="start-view">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Open or Create a New Project</h1>
+                    <br>
+                    <button class="btn btn-primary btn-lg" onclick="newProject()"><i class="fa fa-pencil" aria-hidden="true"></i> New Project</button>
+                    <button class="btn btn-danger btn-lg" onclick="openProject()"><i class="fa fa-folder-open" aria-hidden="true"></i> Open Project</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container display-none-elem" id="project-view">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item bg-danger active tab " style="margin-right: 3px;">
@@ -78,10 +89,26 @@
                                 <button type="submit" class="btn btn-primary" id="create-asset-button" onclick="newAsset()">Create</button>
                             </div>
                         </div>
-                        <div class="row" style="margin-top: 25px;">
+                        <hr>
+                        <div class="row">
                             <div class="col-md-3">
-                                <h3>Characters</h3>
+                                <h3 style="text-align: center;">Characters</h3>
                                 <ul class="list-group" id="assets-chars-list">
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 style="text-align: center;">Environments</h3>
+                                <ul class="list-group" id="assets-envs-list">
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 style="text-align: center;">Maps</h3>
+                                <ul class="list-group" id="assets-maps-list">
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 style="text-align: center;">Props</h3>
+                                <ul class="list-group" id="assets-props-list">
                                 </ul>
                             </div>
                         </div>
