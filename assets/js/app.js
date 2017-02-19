@@ -5,13 +5,28 @@ const path = require('path');
 var project_home = "";
 
 var open_project_button = document.getElementById('open-project-button');
-open_project_button.onclick = selectDirectory;
+open_project_button.onclick = openProject;
 
 var new_project_button = document.getElementById('new-project-button');
 new_project_button.onclick = newProject;
 
 function selectDirectory() {
     project_home = dialog.showOpenDialog({properties: ['openDirectory']})[0]
+}
+
+function getDirectories(srcpath) {
+  return fs.readdirSync(srcpath).filter(file => fs.statSync(path.join(srcpath, file)).isDirectory())
+}
+
+function setDirListings() {
+    assetsChars = [];
+    assetsChars = getDirectories(path.join(project_home, "assets", "chars"));
+    var assetsCharsList = $('#assets-chars-list')
+    assetsCharsList.empty();
+    $.each(assetsChars, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(assetsChars[i]).appendTo(assetsCharsList);
+    });
 }
 
 function newProject() {
@@ -66,6 +81,13 @@ function newProject() {
     if (!fs.existsSync(path.join(project_home, "scenes"))){
         fs.mkdirSync(path.join(project_home, "scenes"));
     }
+    
+    setDirListings();
+}
+
+function openProject() {
+    selectDirectory();
+    setDirListings();
 }
 
 function newAsset() {
@@ -85,4 +107,21 @@ function newAsset() {
     } else {
         alert(" You must enter an asset name!");
     }
+    
+    setDirListings();
+}
+
+function newScene() {
+    var name = document.getElementById('scene-name').value.replace(/ /g,"_");
+    
+    if (name != "") {
+        // Create scenes/name
+        if (!fs.existsSync(path.join(project_home, "scenes", name))){
+            fs.mkdirSync(path.join(project_home, "scenes", name));
+        }
+    } else {
+        alert(" You must enter a scene name!");
+    }
+    
+    setDirListings();
 }
