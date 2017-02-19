@@ -25,7 +25,7 @@
                         </span>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <span class="dropdown-item" id="new-project-button"><i class="fa fa-pencil" aria-hidden="true"></i> New Project</span>
-                            <span class="dropdown-item"><i class="fa fa-folder-open" aria-hidden="true"></i> Open Project</span>
+                            <span class="dropdown-item" id="open-project-button"><i class="fa fa-folder-open" aria-hidden="true"></i> Open Project</span>
                             <span class="dropdown-item"><i class="fa fa-times-circle" aria-hidden="true"></i> Exit</span>
                         </div>
                     </li>
@@ -36,22 +36,52 @@
         <div class="container">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item bg-danger active tab " style="margin-right: 3px;">
-                    <span class="nav-link" data-toggle="tab" href="#assets" role="tab" style="color: #ffffff;"><i class="fa fa-file" aria-hidden="true"></i> Assets</span>
-                  </li>
-                  <li class="nav-item bg-primary" style="margin-right: 3px;">
-                    <span class="nav-link" data-toggle="tab" href="#shots" role="tab" style="color: #ffffff;"><i class="fa fa-video-camera" aria-hidden="true"></i> Shots</span>
-                  </li>
-                  <li class="nav-item bg-success">
-                    <span class="nav-link" data-toggle="tab" href="#tools" role="tab" style="color: #ffffff;"><i class="fa fa-wrench" aria-hidden="true"></i> Tools</span>
-                  </li>
+                    <li class="nav-item bg-danger active tab " style="margin-right: 3px;">
+                        <span class="nav-link" data-toggle="tab" href="#assets" role="tab" style="color: #ffffff;"><i class="fa fa-file" aria-hidden="true"></i> Assets</span>
+                    </li>
+                    <li class="nav-item bg-primary" style="margin-right: 3px;">
+                        <span class="nav-link" data-toggle="tab" href="#scenes" role="tab" style="color: #ffffff;"><i class="fa fa-video-camera" aria-hidden="true"></i> Scenes</span>
+                    </li>
+                    <li class="nav-item bg-warning" style="margin-right: 3px;">
+                        <span class="nav-link" data-toggle="tab" href="#shots" role="tab" style="color: #ffffff;"><i class="fa fa-video-camera" aria-hidden="true"></i> Shots</span>
+                    </li>
+                    <li class="nav-item bg-success">
+                        <span class="nav-link" data-toggle="tab" href="#tools" role="tab" style="color: #ffffff;"><i class="fa fa-wrench" aria-hidden="true"></i> Tools</span>
+                    </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                  <div class="tab-pane active" id="assets" role="tabpanel">Assets</div>
-                  <div class="tab-pane" id="shots" role="tabpanel">Shots</div>
-                  <div class="tab-pane" id="tools" role="tabpanel">Tools</div>
+                    <div class="tab-pane active" id="assets" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-4">
+                            
+                            </div>
+                            <div class="col-md-4">
+                                <h3>Create New Asset</h3>
+                                <div class="form-group">
+                                    <label for="asset-name">Asset Name</label>
+                                    <input type="text" class="form-control" id="asset-name" placeholder="Pile of rocks" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="asset-type">Asset Type</label>
+                                    <select class="form-control" id="asset-type">
+                                        <option value="chars">Character</option>
+                                        <option value="envs">Environment</option>
+                                        <option value="maps">Map</option>
+                                        <option value="props">Prop</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="create-asset-button" onclick="newAsset()">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="scenes" role="tabpanel">Scenes</div>
+                    <div class="tab-pane" id="shots" role="tabpanel">Shots</div>
+                    <div class="tab-pane" id="tools" role="tabpanel">Tools</div>
                 </div>
             </div>
         </div>

@@ -12,6 +12,7 @@ body {
 
 .tab-pane.active {
     background-color: #ffffff;
+    padding: 15px;
 }
 
 .active {
