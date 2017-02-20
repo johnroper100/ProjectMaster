@@ -69,6 +69,33 @@ function setDirListings() {
     {
         var li = $('<li/>').addClass('list-group-item').text(assetsProps[i]).appendTo(assetsPropsList);
     });
+    
+    toolsAddons = [];
+    toolsAddons = getDirectories(path.join(project_home, "tools", "addons"));
+    var toolsAddonsList = $('#tools-addons-list')
+    toolsAddonsList.empty();
+    $.each(toolsAddons, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(toolsAddons[i]).appendTo(toolsAddonsList);
+    });
+    
+    toolsScripts = [];
+    toolsScripts = getDirectories(path.join(project_home, "tools", "scripts"));
+    var toolsScriptsList = $('#tools-scripts-list')
+    toolsScriptsList.empty();
+    $.each(toolsScripts, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(toolsScripts[i]).appendTo(toolsScriptsList);
+    });
+    
+    scenes = [];
+    scenes = getDirectories(path.join(project_home, "scenes"));
+    var scenesList = $('#scenes-list')
+    scenesList.empty();
+    $.each(scenes, function(i)
+    {
+        var li = $('<li/>').addClass('list-group-item').text(scenes[i]).appendTo(scenesList);
+    });
 }
 
 function newProject() {
@@ -149,7 +176,7 @@ function newAsset() {
             fs.mkdirSync(path.join(project_home, "assets", type, name, "maps"));
         }
     } else {
-        alert(" You must enter an asset name!");
+        alert("You must enter an asset name!");
     }
     
     setDirListings();
@@ -164,7 +191,23 @@ function newScene() {
             fs.mkdirSync(path.join(project_home, "scenes", name));
         }
     } else {
-        alert(" You must enter a scene name!");
+        alert("You must enter a scene name!");
+    }
+    
+    setDirListings();
+}
+
+function newTool() {
+    var name = document.getElementById('tool-name').value.replace(/ /g,"_");
+    var type = document.getElementById('tool-type').value;
+    
+    if (name != "") {
+        // Create tools/type/name
+        if (!fs.existsSync(path.join(project_home, "tools", type, name))){
+            fs.mkdirSync(path.join(project_home, "tools", type, name));
+        }
+    } else {
+        alert("You must enter a tool name!");
     }
     
     setDirListings();
