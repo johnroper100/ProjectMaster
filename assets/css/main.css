@@ -27,3 +27,7 @@ body {
 .display-none-elem {
     display: none;
 }
+
+.btn-margin {
+    margin-left: 15px;
+}

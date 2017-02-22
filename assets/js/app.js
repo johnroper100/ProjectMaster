@@ -2,6 +2,7 @@ const app = require('electron').remote;
 const dialog = app.dialog;
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 var project_home = "";
 
 var open_project_button = document.getElementById('open-project-button');
@@ -26,13 +27,6 @@ function getDirectories(srcpath) {
   return fs.readdirSync(srcpath).filter(file => fs.statSync(path.join(srcpath, file)).isDirectory())
 }
 
-function setScene() {
-    var start = document.getElementById('start-view');
-    var project = document.getElementById('project-view');
-    start.classList.add("display-none-elem");
-    project.classList.remove("display-none-elem");
-}
-
 function setDirListings() {
     assetsChars = [];
     assetsChars = getDirectories(path.join(project_home, "assets", "chars"));
@@ -40,7 +34,21 @@ function setDirListings() {
     assetsCharsList.empty();
     $.each(assetsChars, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(assetsChars[i]).appendTo(assetsCharsList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("assets", "chars", assetsChars[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(assetsChars[i]);
+        li.append(button);
+        li.appendTo(assetsCharsList);
     });
     
     assetsEnvs = [];
@@ -49,7 +57,21 @@ function setDirListings() {
     assetsEnvsList.empty();
     $.each(assetsEnvs, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(assetsEnvs[i]).appendTo(assetsEnvsList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("assets", "envs", assetsEnvs[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(assetsEnvs[i]);
+        li.append(button);
+        li.appendTo(assetsEnvsList);
     });
     
     assetsMaps = [];
@@ -58,7 +80,21 @@ function setDirListings() {
     assetsMapsList.empty();
     $.each(assetsMaps, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(assetsMaps[i]).appendTo(assetsMapsList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("assets", "maps", assetsMaps[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(assetsMaps[i]);
+        li.append(button);
+        li.appendTo(assetsMapsList);
     });
     
     assetsProps = [];
@@ -67,7 +103,21 @@ function setDirListings() {
     assetsPropsList.empty();
     $.each(assetsProps, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(assetsProps[i]).appendTo(assetsPropsList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("assets", "props", assetsProps[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(assetsProps[i]);
+        li.append(button);
+        li.appendTo(assetsPropsList);
     });
     
     toolsAddons = [];
@@ -76,7 +126,21 @@ function setDirListings() {
     toolsAddonsList.empty();
     $.each(toolsAddons, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(toolsAddons[i]).appendTo(toolsAddonsList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("tools", "addons", toolsAddons[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(toolsAddons[i]);
+        li.append(button);
+        li.appendTo(toolsAddonsList);
     });
     
     toolsScripts = [];
@@ -85,7 +149,21 @@ function setDirListings() {
     toolsScriptsList.empty();
     $.each(toolsScripts, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(toolsScripts[i]).appendTo(toolsScriptsList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("tools", "scripts", toolsScripts[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(toolsScripts[i]);
+        li.append(button);
+        li.appendTo(toolsScriptsList);
     });
     
     scenes = [];
@@ -94,8 +172,40 @@ function setDirListings() {
     scenesList.empty();
     $.each(scenes, function(i)
     {
-        var li = $('<li/>').addClass('list-group-item').text(scenes[i]).appendTo(scenesList);
+        var button = document.createElement("button");
+        button.innerHTML = "Delete";
+        button.classList.add('btn');
+        button.classList.add('btn-danger');
+        button.classList.add('btn-sm');
+        button.classList.add('btn-margin');
+        button.addEventListener('click', function(){
+            deleteItem("scenes", "none", scenes[i]);
+        });
+        
+        var li = $('<li/>')
+        li.addClass('list-group-item');
+        li.text(scenes[i]);
+        li.append(button);
+        li.appendTo(scenesList);
     });
+}
+
+function setScene() {
+    var start = document.getElementById('start-view');
+    var project = document.getElementById('project-view');
+    start.classList.add("display-none-elem");
+    project.classList.remove("display-none-elem");
+}
+
+function deleteItem(type, item, name) {
+    if (confirm('Do you really want to delete '+name+'?')) {
+        if (item != "none") {
+            deletePath = path.join(project_home, type, item, name);
+        } else {
+            deletePath = path.join(project_home, type, name);
+        }
+        rimraf(deletePath, function () { setDirListings(); setScene(); });
+    }
 }
 
 function newProject() {
