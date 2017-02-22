@@ -188,6 +188,46 @@ function setDirListings() {
         li.append(button);
         li.appendTo(scenesList);
     });
+    
+    scenesInput = [];
+    scenesInput = getDirectories(path.join(project_home, "scenes"));
+    var scenesInputList = $('#shot-scene')
+    scenesInputList.empty();
+    $.each(scenesInput, function(i)
+    {   
+        var option = document.createElement('option');
+        option.value = scenesInput[i];
+        option.innerHTML = scenesInput[i];
+        scenesInputList.append(option);
+    });
+    
+    shots = [];
+    var shotsList = $('#shots-list')
+    shotsList.empty();
+    $.each(scenes, function(i)
+    {
+        shots = [];
+        shots = getDirectories(path.join(project_home, "scenes", scenes[i]));
+        
+        $.each(shots, function(j)
+        {
+            var button = document.createElement("button");
+            button.innerHTML = "Delete";
+            button.classList.add('btn');
+            button.classList.add('btn-danger');
+            button.classList.add('btn-sm');
+            button.classList.add('btn-margin');
+            button.addEventListener('click', function(){
+                deleteItem("scenes", scenes[i], shots[j]);
+            });
+
+            var li = $('<li/>')
+            li.addClass('list-group-item');
+            li.text(shots[j]);
+            li.append(button);
+            li.appendTo(shotsList);
+        });
+    });
 }
 
 function setScene() {
@@ -290,6 +330,7 @@ function newAsset() {
     }
     
     setDirListings();
+    setScene();
 }
 
 function newScene() {
@@ -305,6 +346,24 @@ function newScene() {
     }
     
     setDirListings();
+    setScene();
+}
+
+function newShot() {
+    var name = document.getElementById('shot-name').value.replace(/ /g,"_");
+    var scene_name = document.getElementById('shot-scene').value;
+    
+    if (name != "") {
+        // Create scenes/scene_name/name
+        if (!fs.existsSync(path.join(project_home, "scenes", scene_name, name))){
+            fs.mkdirSync(path.join(project_home, "scenes", scene_name, name));
+        }
+    } else {
+        alert("You must enter a shot name!");
+    }
+    
+    setDirListings();
+    setScene();
 }
 
 function newTool() {
@@ -321,4 +380,5 @@ function newTool() {
     }
     
     setDirListings();
+    setScene();
 }
